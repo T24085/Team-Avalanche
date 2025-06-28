@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- CSP to allow Twitch iframes and scripts -->
-    <meta http-equiv="Content-Security-Policy" content="frame-src https://player.twitch.tv; default-src 'self'; img-src *; style-src 'self' https://cdn.tailwindcss.com 'unsafe-inline'; script-src 'self' https://cdn.tailwindcss.com https://embed.twitch.tv 'unsafe-inline'">
+    <!-- CSP to allow Twitch and YouTube iframes -->
+    <meta http-equiv="Content-Security-Policy" content="frame-src https://player.twitch.tv https://www.youtube.com; default-src 'self'; img-src *; style-src 'self' https://cdn.tailwindcss.com 'unsafe-inline'; script-src 'self' https://cdn.tailwindcss.com 'unsafe-inline'">
     <title>Avalanche! [aV!] - TRIBES 3: Rivals</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://embed.twitch.tv/embed/v1.js"></script>
     <style>
         /* Custom CSS for glowing effects, animations, and parallax */
         .glow-text {
@@ -33,37 +32,12 @@
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
-        /* Stream container and box styling from multidisplay */
+        /* Stream container styling */
         .stream-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 10px;
-            height: auto;
-            box-sizing: border-box;
             padding: 10px;
-        }
-        .stream-box {
-            position: relative;
-            background-color: #2d3748;
-            border-radius: 8px;
-            overflow: hidden;
-            height: 300px;
-        }
-        .stream-label {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background-color: rgba(0, 0, 0, 0.7);
-            padding: 5px 10px;
-            border-radius: 4px;
-            font-size: 14px;
-            font-weight: bold;
-            color: #f87171; /* Light red to match theme */
-        }
-        .stream-player {
-            width: 100%;
-            height: 100%;
-            border: none;
         }
         /* Parallax background styles */
         .parallax-hero {
@@ -91,13 +65,27 @@
             width: 100%;
             height: 100%;
         }
-        /* Responsive adjustments from multidisplay */
+        /* Video container */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            background: #000;
+            margin-bottom: 2rem;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        /* Responsive adjustments */
         @media (max-width: 1000px) {
             .stream-container {
-                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            }
-            .stream-box {
-                height: 250px;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             }
         }
     </style>
@@ -114,6 +102,7 @@
             <nav>
                 <ul class="flex space-x-6">
                     <li><a href="#home" class="hover:text-red-400 transition">Home</a></li>
+                    <li><a href="#featured-video" class="hover:text-red-400 transition">Featured Video</a></li>
                     <li><a href="#streams" class="hover:text-red-400 transition">Streams</a></li>
                     <li><a href="#roster" class="hover:text-red-400 transition">Roster</a></li>
                     <li><a href="#about" class="hover:text-red-400 transition">About</a></li>
@@ -132,11 +121,46 @@
         </div>
     </section>
 
-    <!-- Featured Streams Section -->
+    <!-- Featured Video Section -->
+    <section id="featured-video" class="py-16 bg-gray-800 bg-opacity-80">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12 glow-text">Featured Video</h2>
+            <div class="video-container mx-auto max-w-4xl">
+                <iframe src="https://player.twitch.tv/?video=2477408852&parent=localhost" frameborder="0" allowfullscreen="true" scrolling="no"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Streams Section -->
     <section id="streams" class="py-16 bg-gray-800 bg-opacity-80">
         <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-bold text-center mb-12 glow-text">Featured Streams</h2>
-            <div id="stream-container" class="stream-container"></div>
+            <h2 class="text-4xl font-bold text-center mb-12 glow-text">Team Streams</h2>
+            <div class="stream-container">
+                <div class="bg-gray-900 p-6 rounded-lg glow-border hover-scale">
+                    <h3 class="text-xl font-semibold">Wriggles</h3>
+                    <a href="https://www.twitch.tv/wrigglespk" target="_blank" class="text-red-400 hover:text-red-300">twitch.tv/wrigglespk</a>
+                </div>
+                <div class="bg-gray-900 p-6 rounded-lg glow-border hover-scale">
+                    <h3 class="text-xl font-semibold">TritiumJones</h3>
+                    <a href="https://www.twitch.tv/tritiumjones" target="_blank" class="text-red-400 hover:text-red-300">twitch.tv/tritiumjones</a>
+                </div>
+                <div class="bg-gray-900 p-6 rounded-lg glow-border hover-scale">
+                    <h3 class="text-xl font-semibold">Dean</h3>
+                    <a href="https://www.twitch.tv/wholuvsdean" target="_blank" class="text-red-400 hover:text-red-300">twitch.tv/wholuvsdean</a>
+                </div>
+                <div class="bg-gray-900 p-6 rounded-lg glow-border hover-scale">
+                    <h3 class="text-xl font-semibold">Proj</h3>
+                    <a href="https://www.twitch.tv/prj_tv" target="_blank" class="text-red-400 hover:text-red-300">twitch.tv/prj_tv</a>
+                </div>
+                <div class="bg-gray-900 p-6 rounded-lg glow-border hover-scale">
+                    <h3 class="text-xl font-semibold">Ggglygy</h3>
+                    <a href="https://www.twitch.tv/ggglygy" target="_blank" class="text-red-400 hover:text-red-300">twitch.tv/ggglygy</a>
+                </div>
+                <div class="bg-gray-900 p-6 rounded-lg glow-border hover-scale">
+                    <h3 class="text-xl font-semibold">Def_Monk</h3>
+                    <a href="https://www.youtube.com/@defmonk0/streams" target="_blank" class="text-red-400 hover:text-red-300">youtube.com/@defmonk0/streams</a>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -155,6 +179,7 @@
                 <div class="bg-gray-900 p-6 rounded-lg glow-border hover-scale">
                     <h3 class="text-2xl font-semibold">BakaToma</h3>
                     <p class="text-red-400">Core Member</p>
+                    <a href="https://www.twitch.tv/bakatoma1" target="_blank" class="text-red-400 hover:text-red-300">twitch.tv/bakatoma1</a>
                 </div>
                 <div class="bg-gray-900 p-6 rounded-lg glow-border hover-scale">
                     <h3 class="text-2xl font-semibold">Franchez</h3>
@@ -163,23 +188,28 @@
                 <div class="bg-gray-900 p-6 rounded-lg glow-border hover-scale">
                     <h3 class="text-2xl font-semibold">Dean</h3>
                     <p class="text-red-400">Core Member</p>
+                    <a href="https://www.twitch.tv/wholuvsdean" target="_blank" class="text-red-400 hover:text-red-300">twitch.tv/wholuvsdean</a>
                 </div>
                 <div class="bg-gray-900 p-6 rounded-lg glow-border hover-scale">
                     <h3 class="text-2xl font-semibold">Ggglygy</h3>
                     <p class="text-red-400">Core Member</p>
+                    <a href="https://www.twitch.tv/ggglygy" target="_blank" class="text-red-400 hover:text-red-300">twitch.tv/ggglygy</a>
                 </div>
                 <div class="bg-gray-900 p-6 rounded-lg glow-border hover-scale">
                     <h3 class="text-2xl font-semibold">Wriggles</h3>
                     <p class="text-red-400">Core Member</p>
+                    <a href="https://www.twitch.tv/wrigglespk" target="_blank" class="text-red-400 hover:text-red-300">twitch.tv/wrigglespk</a>
                 </div>
                 <div class="bg-gray-900 p-6 rounded-lg glow-border hover-scale">
                     <h3 class="text-2xl font-semibold">Def_Monk</h3>
                     <p class="text-red-400">Core Member</p>
+                    <a href="https://www.youtube.com/@defmonk0/streams" target="_blank" class="text-red-400 hover:text-red-300">youtube.com/@defmonk0/streams</a>
                 </div>
                 <!-- Ace -->
                 <div class="bg-gray-900 p-6 rounded-lg glow-border hover-scale">
                     <h3 class="text-2xl font-semibold">Proj</h3>
                     <p class="text-red-400">Ace</p>
+                    <a href="https://www.twitch.tv/prj_tv" target="_blank" class="text-red-400 hover:text-red-300">twitch.tv/prj_tv</a>
                 </div>
             </div>
         </div>
@@ -201,44 +231,5 @@
             <p>Follow us on <a href="https://x.com/Avalanche" target="_blank" class="text-red-400 hover:text-red-300">@Avalanche</a></p>
         </div>
     </footer>
-
-    <!-- JavaScript for Twitch Streams -->
-    <script>
-        // Define Avalanche channels
-        let channels = [
-            'wrigglespk',
-            'tritiumjones',
-            'wholuvsdean',
-            'prj_tv',
-            'ggglygy'
-        ].sort(); // Sort alphabetically
-
-        // Render streams
-        function renderStreams() {
-            const streamContainer = document.getElementById('stream-container');
-            streamContainer.innerHTML = '';
-
-            channels.forEach((channel, index) => {
-                const streamIndex = index + 1;
-                const streamBox = document.createElement('div');
-                streamBox.className = 'stream-box';
-                streamBox.id = `stream-${streamIndex}`;
-                streamBox.innerHTML = `
-                    <div class="stream-label">${channel}</div>
-                    <iframe
-                        class="stream-player"
-                        src="https://player.twitch.tv/?channel=${encodeURIComponent(channel)}&parent=${window.location.hostname}"
-                        frameborder="0"
-                        allowfullscreen="true"
-                        scrolling="no">
-                    </iframe>
-                `;
-                streamContainer.appendChild(streamBox);
-            });
-        }
-
-        // Initialize streams on page load
-        document.addEventListener('DOMContentLoaded', renderStreams);
-    </script>
 </body>
 </html>
