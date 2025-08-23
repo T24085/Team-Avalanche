@@ -86,9 +86,15 @@
 
   <main id="main" class="max-w-6xl mx-auto px-4">
     <!-- HERO -->
-    <section id="home" class="reveal py-16 md:py-20">
-      <div class="grid md:grid-cols-2 gap-6 items-center">
-        <div class="bg-black/55 border border-white/15 rounded-xl p-6 backdrop-blur-sm">
+    <section id="home" class="reveal py-6 md:py-8">
+      <div class="relative h-[56vh] min-h-[360px] md:h-[520px] rounded-xl overflow-hidden border border-white/10 shadow-card">
+        <!-- Full‑bleed banner image with safe focal point -->
+        <img src="https://raw.githubusercontent.com/T24085/Team-Avalanche/main/3.png" alt="Avalanche banner art" class="absolute inset-0 w-full h-full object-cover object-[center_30%] select-none" />
+        <!-- Red/Blue gradient veil for legibility -->
+        <div class="absolute inset-0 bg-gradient-to-r from-brand-blue/35 via-black/55 to-brand-red/35"></div>
+
+        <!-- Text card pinned inside the banner -->
+        <div class="relative z-10 max-w-xl m-4 md:m-8 bg-black/55 border border-white/15 rounded-xl p-6 backdrop-blur-sm">
           <h1 class="text-4xl md:text-5xl font-extrabold leading-tight drop-shadow">Welcome to <span class="text-brand-blue">Avalanche</span><span class="text-brand-red">!</span></h1>
           <p class="mt-3 text-lg text-white/90">Dominating the Wilderzone in <em>TRIBES 3: Rivals</em> with jetpacks, skiing, and unmatched teamwork.</p>
           <div class="mt-5 flex gap-3 flex-wrap">
@@ -96,7 +102,6 @@
             <a href="#featured" class="inline-flex items-center gap-2 border border-white/20 hover:bg-white/10 px-5 py-3 rounded-xl">Watch Highlight</a>
           </div>
         </div>
-        <div class="rounded-xl overflow-hidden border border-white/15 shadow-card para hero-parallax min-h-[320px]"></div>
       </div>
     </section>
 
